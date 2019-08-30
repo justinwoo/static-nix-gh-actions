@@ -1,0 +1,17 @@
+name: My Workflow
+on: [push]
+
+jobs:
+  my_job:
+    name: My Job on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+
+    steps:
+      - uses: actions/checkout@master
+      - name: run my shit
+        run: |
+          ./static-nix run nixpkgs.hello -c hello
